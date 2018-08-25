@@ -1,5 +1,5 @@
 <template>
-    <p class="hello">Hello, {{ who }}</p>
+    <p class="hello">Hello, '{{ who }}'</p>
 </template>
 
 <script>
