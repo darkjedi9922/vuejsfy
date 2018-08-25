@@ -1,6 +1,6 @@
 'use strict';
 
-var Vuefile = require('./vuefile');
+var Vuefile = require('./vuefile').Vuefile;
 
 var filename = process.argv[2];
 if (filename === undefined) {
@@ -9,4 +9,5 @@ if (filename === undefined) {
 }
 
 var vuefile = new Vuefile(filename);
-vuefile.compile(vuefile.getDir() + '/' + vuefile.getComponentName() + '.vue.js');
+var outfile = vuefile.getDir() + '/' + vuefile.getComponentName();
+vuefile.compile(outfile + '.vue.js', outfile + '.vue.css');
