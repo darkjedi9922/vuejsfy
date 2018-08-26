@@ -16,5 +16,7 @@
   ],
   "author": "Jed Dark",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "jsdom": "^12.0.0"
+  }
 }

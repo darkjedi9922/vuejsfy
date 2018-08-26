@@ -1,5 +1,5 @@
 Vue.component('Hello', {
-    template: '<p class="hello">Hello, \'{{ who }}\'</p>',
+    template: '<div> <p class="hello">Hello, \'{{ who }}\'</p> </div>',
         data: function() {
             return {
                 who: 'VueJSfy'

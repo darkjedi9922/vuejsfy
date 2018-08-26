@@ -1,5 +1,7 @@
 <template>
-    <p class="hello">Hello, '{{ who }}'</p>
+    <div>
+        <p class="hello">Hello, '{{ who }}'</p>
+    </div>
 </template>
 
 <script>

@@ -1,6 +1,11 @@
 'use strict';
 
 var fs = require('fs');
+const jsdom = require('jsdom');
+
+// Это то же, что и `JSDOM = jsdom.JSDOM` - деструктурирующее присваивание
+// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+const { JSDOM } = jsdom;
 
 function Vuefile(filename) {
     this.filename = filename;
@@ -49,31 +54,30 @@ Vuefile.prototype.assembleJs = function(content) {
 
 function VuefileContent(content) {
     this.content = content;
+    this.dom = new JSDOM(content);
 }
 
 // () => string
 VuefileContent.prototype.readScriptContent = function() {
-    var start = this.content.indexOf('<script>') + '<script>'.length;
-    var end = this.content.indexOf('</script>');
-    var result = this.content.slice(start, end);
-    return result.replace('export', '').replace('default', '').trim();
+    var scripts = this.dom.window.document.getElementsByTagName('script');
+    if (scripts.length !== 1) throw new Error('In the file is not only one <script> tag');
+    return scripts[0].textContent.replace('export', '').replace('default', '').trim();
 }
 
 // () => string
 VuefileContent.prototype.readTemplate = function() {
-    var start = this.content.indexOf('<template>') + '<template>'.length;
-    var end = this.content.indexOf('</template>');
-    var result = this.content.slice(start, end);
-    return result.replace(/\r\n|\r|\n/g, '').replace(/ {2,}/g, ' ').trim();
+    var templates = this.dom.window.document.getElementsByTagName('template');
+    if (templates.length !== 1) throw new Error('In the file is not only one <template> tag');
+    if (templates[0].content.childElementCount !== 1) throw new Error('The template has not only one child element');
+    return templates[0].innerHTML.replace(/\r\n|\r|\n/g, '').replace(/ {2,}/g, ' ').trim();
 }
 
 // () => string|null
 VuefileContent.prototype.readCss = function() {
-    var end = this.content.indexOf('</style>');
-    if (end === -1) return null;
-    var start = this.content.indexOf('<style>') + '<style>'.length;
-    var result = this.content.slice(start, end);
-    return result.trim();
+    var styles = this.dom.window.document.getElementsByTagName('style');
+    if (styles.length > 1) throw new Error('In .vue file can not be more than one <style> tag');
+    else if (styles.length === 1) return styles[0].textContent.trim();
+    else return null;
 }
 
 exports.Vuefile = Vuefile;
