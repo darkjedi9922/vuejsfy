@@ -1,16 +1,24 @@
 Simple compiler of .vue file components into simple classic .js vue components. The styles are extracted into separated .css files.
 
-## Usage
+The module can be used **as an application** and **as a module**.
 
-`node vuejsfy <vuefile> [--case=param]`
+## Usage **as an application**
+
+`node vuejsfy <vuefile> [<flags>]`
 
 ### Base
 
-- **vuefile** - .vue file component
+`vuefile` - .vue file component
 
 ### Flags
 
-- **--case** - Case style of the component name. There are only *param* (example: component-name) value yet. Without this flags the style will be not applied.
+`--htmlformat` - Transform *ComponentName* style of the filename and the component name to *component-name*. Without this flags the style will be not applied.
+
+`--dest <dir>` - Destination directory of the compiled js and css files. By default there are created in the same directory where .vue file is.
+
+`--destJs <dir>` - Destination directory of the compiled js file. By default equals *--dest* flag value.
+
+`--destCss <dir>` - Destination directory of the compiled css file. By default equals *--dest* flag value.
 
 ## Example
 
@@ -43,11 +51,9 @@ export default {
 After **`nodejs vuejsfy HelloVueJsfy.vue`** in the same directory where the .vue file is will be created **HelloVuejsfy.vue.js** and **HelloVuejsfy.vue.css** files:
 
 ```js
-// HelloVueJsfy.vue.js <-- nodejs vuejsfy HelloVueJsfy.vue
-//      OR
-// hello-vue-jsfy.vue.js <-- nodejs vuejsfy HelloVueJsfy.vue --case=param
+// HelloVueJsfy.vue.js
 
-Vue.component('HelloVueJsfy' /* or hello-vue-jsfy */, {
+Vue.component('HelloVueJsfy', {
     template: '<div> <p class="hello">Hello, \'{{ who }}\'</p> </div>',
     data: function() {
         return {
@@ -58,11 +64,28 @@ Vue.component('HelloVueJsfy' /* or hello-vue-jsfy */, {
 ```
 
 ```css
-/* HelloVueJsfy.vue.css <-- nodejs vuejsfy HelloVueJsfy.vue */
-/*      OR       */
-/* hello-vue-jsfy.vue.css <-- nodejs vuejsfy HelloVueJsfy.vue --case=param */
+/* HelloVueJsfy.vue.css */
 
 .hello {
     font-weight: bold;
 }
+```
+
+## Usage **as a module**
+
+Basically the usage is the same as the usage as an application but module is required and all of the flags get in as options.
+
+### Example
+
+```js
+var vuejsfy = require('vuejsfy');
+
+// without options
+vuejsfy('components/my-component.vue');
+
+// with options
+vuejsfy('components/ExampleWithOptions.vue', {
+    htmlformat: true,
+    dest: 'scripts/components'
+});
 ```
