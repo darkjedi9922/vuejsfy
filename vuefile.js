@@ -24,15 +24,15 @@ Vuefile.prototype.readContent = function() {
     return fs.readFileSync(this.filename, 'utf-8');
 }
 
-Vuefile.prototype.compile = function(jsOutfile, cssOutfile) {
+Vuefile.prototype.compile = function(jsOutfile, cssOutfile, componentName) {
     var content = new VuefileContent(this.readContent());
-    this.compileJs(jsOutfile, content);
+    this.compileJs(jsOutfile, content, componentName);
     this.compileCss(cssOutfile, content);
 }
 
-Vuefile.prototype.compileJs = function(jsOutfile, content) {
+Vuefile.prototype.compileJs = function(jsOutfile, content, componentName) {
     var outfileDescriptor = fs.openSync(jsOutfile, 'w');
-    fs.writeSync(outfileDescriptor, this.assembleJs(content));
+    fs.writeSync(outfileDescriptor, this.assembleJs(content, componentName));
     fs.closeSync(outfileDescriptor);
 }
 
@@ -44,12 +44,12 @@ Vuefile.prototype.compileCss = function(cssOutfile, content) {
     fs.closeSync(outfileDescriptor);
 }
 
-Vuefile.prototype.assembleJs = function(content) {
+Vuefile.prototype.assembleJs = function(content, componentName) {
     var vuefileContent = this.readContent();
     var body = content.readScriptContent(vuefileContent);
     var template = "template: '" + content.readTemplate(vuefileContent).replace(/'/g, "\\'") + "',";
     body = body.replace('{', '{\n    ' + template);
-    return "Vue.component('" + this.getComponentName() + "', " + body + ");";
+    return "Vue.component('" + componentName + "', " + body + ");";
 }
 
 function VuefileContent(content) {
