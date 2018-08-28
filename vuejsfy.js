@@ -3,6 +3,7 @@
 const fs = require('fs');
 const jsdom = require('jsdom');
 const paramCase = require('param-case');
+const fm = require('file-matcher');
 
 const { JSDOM } = jsdom;
 
@@ -12,7 +13,7 @@ const { JSDOM } = jsdom;
  * options.destJs - directory for compiled js file
  * options.destCss - directory for compiled css file
  */
-module.exports = function (filename, options) {
+function compile(filename, options) {
 
     var vueContent = fs.readFileSync(filename);
     var vueDom = new JSDOM(vueContent);
@@ -20,13 +21,28 @@ module.exports = function (filename, options) {
     var script = readScript(vueDom);
     var style = readStyle(vueDom);
     var componentName = getComponentName(filename, options.htmlformat);
-    var vueFileDir = getFileDir(filename);
-    var destJsDir = options.destJs || options.dest || vueFileDir;
-    var destCssDir = options.destCss || options.dest || vueFileDir;
+    var destJsDir = (options.destJs || options.dest || '');
+    var destCssDir = (options.destCss || options.dest || '');
 
     compileJs(componentName, assembleJs(componentName, script, template), destJsDir);
     if (style) compileStyle(componentName, style, destCssDir);
 }
+
+// options are the same as in compile()
+function compileByPattern(filenamePattern, options) {
+    var fileMatcher = new fm.FileMatcher();
+    fileMatcher.find({
+        path: process.cwd(),
+        recursiveSearch: true,
+        fileFilter: {
+            fileNamePattern: '**/' + filenamePattern
+        }
+    }).then(function (files) {
+        for (var i = 0; i < files.length; ++i) compile(files[i], options);
+    });
+}
+
+module.exports = compileByPattern;
 
 // (filepath: string) => descriptor: number
 function openFile(filepath) {

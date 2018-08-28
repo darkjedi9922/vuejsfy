@@ -17,6 +17,7 @@
   "author": "Jed Dark",
   "license": "ISC",
   "dependencies": {
+    "file-matcher": "^1.3.0",
     "jsdom": "^12.0.0",
     "minimist": "^1.2.0",
     "param-case": "^2.1.1"
