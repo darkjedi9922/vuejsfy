@@ -3,7 +3,7 @@
 const fs = require('fs');
 const jsdom = require('jsdom');
 const paramCase = require('param-case');
-const fm = require('file-matcher');
+const fileFind = require('adequate-file-finder');
 
 const { JSDOM } = jsdom;
 
@@ -21,8 +21,8 @@ function compile(filename, options) {
     var script = readScript(vueDom);
     var style = readStyle(vueDom);
     var componentName = getComponentName(filename, options.htmlformat);
-    var destJsDir = (options.destJs || options.dest || '');
-    var destCssDir = (options.destCss || options.dest || '');
+    var destJsDir = (options.destJs || options.dest || getFileDir(filename));
+    var destCssDir = (options.destCss || options.dest || getFileDir(filename));
 
     compileJs(componentName, assembleJs(componentName, script, template), destJsDir);
     if (style) compileStyle(componentName, style, destCssDir);
@@ -30,16 +30,8 @@ function compile(filename, options) {
 
 // options are the same as in compile()
 function compileByPattern(filenamePattern, options) {
-    var fileMatcher = new fm.FileMatcher();
-    fileMatcher.find({
-        path: process.cwd(),
-        recursiveSearch: true,
-        fileFilter: {
-            fileNamePattern: '**/' + filenamePattern
-        }
-    }).then(function (files) {
-        for (var i = 0; i < files.length; ++i) compile(files[i], options);
-    });
+    var files = fileFind(filenamePattern);
+    for (var i = 0; i < files.length; ++i) compile(files[i], options);
 }
 
 module.exports = compileByPattern;

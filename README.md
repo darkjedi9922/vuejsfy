@@ -1,24 +1,30 @@
+# VueJSfy
+
 Simple compiler of .vue file components into simple classic .js vue components. The styles are extracted into separated .css files.
 
 The module can be used **as an application** and **as a module**.
 
+## Installation
+
+`npm install vuejsfy`
+
 ## Usage **as an application**
 
-`node vuejsfy <vuefile> [<flags>]`
+`node vuejsfy '<vuefile>' [<flags>]`
 
 ### Base
 
-`vuefile` - .vue file component
+* `vuefile` - pattern or strict path to .vue file components. Example: `'path/**/dir/*.vue'` or `'path/to/dir/MyComponent.vue'`
 
 ### Flags
 
-`--htmlformat` - Transform *ComponentName* style of the filename and the component name to *component-name*. Without this flags the style will be not applied.
+* `--htmlformat` - Transform *ComponentName* style of the filename and the component name to *component-name*. Without this flags the style will be not applied.
 
-`--dest <dir>` - Destination directory of the compiled js and css files. By default there are created in the same directory where .vue file is.
+* `--dest <dir>` - Destination directory of the compiled js and css files. By default there are created in the same directory where .vue file is.
 
-`--destJs <dir>` - Destination directory of the compiled js file. By default equals *--dest* flag value.
+* `--destJs <dir>` - Destination directory of the compiled js file. By default equals *--dest* flag value.
 
-`--destCss <dir>` - Destination directory of the compiled css file. By default equals *--dest* flag value.
+* `--destCss <dir>` - Destination directory of the compiled css file. By default equals *--dest* flag value.
 
 ## Example
 
