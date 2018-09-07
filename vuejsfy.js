@@ -14,6 +14,7 @@ const VuefileCompiler = require('./classes/vuefile-compiler');
  * options.destCss - directory for compiled css file
  */
 function compile(filename, options) {
+    options = options || {}
 
     var vueContent = fs.readFileSync(filename);
     var vuefilePath = new VuefilePath(filename);
