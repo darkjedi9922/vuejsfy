@@ -34,7 +34,7 @@ function compileByPattern(filenamePattern, options) {
 
 // (compiler: VuefileCompiler, dir: string)
 function compileJs(compiler, dir) {
-    var file = File.openToWrite(dir + '/' + compiler.componentName + '.vue.js');
+    var file = new File(dir + '/' + compiler.componentName + '.vue.js');
     file.write(compiler.compileJs());
     file.close();
 }
@@ -43,7 +43,7 @@ function compileJs(compiler, dir) {
 function compileStyle(compiler, dir) {
     var css = compiler.compileCss();
     if (!css) return;
-    var file = File.openToWrite(dir + '/' + compiler.componentName + '.vue.css');
+    var file = new File(dir + '/' + compiler.componentName + '.vue.css');
     file.write(css);
     file.close();
 }

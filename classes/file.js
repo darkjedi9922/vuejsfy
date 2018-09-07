@@ -3,17 +3,10 @@
 const fs = require('fs');
 const FilePath = require('./file-path');
 
-// (filepath: string) => File
-File.openToWrite = function(path) {
-    new FilePath(path).createDir();
-    var descriptor = fs.openSync(path, 'w');
-    return new File(path, descriptor);
-}
-
-// (path: string, descriptor: number)
-function File(path, descriptor) {
+function File(path) {
     this.path = path;
-    this.descriptor = descriptor;
+    new FilePath(path).createDir();
+    this.descriptor = fs.openSync(path, 'w');
 }
 
 // (content: string)
