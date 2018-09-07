@@ -17,7 +17,6 @@ FilePath.prototype.createDir = function() {
     }
 }
 
-// () => string
 FilePath.prototype.getDir = function() {
     if (this.path.indexOf('/') === -1) return '';
     return this.path.split('/').slice(0, -1).join('/');

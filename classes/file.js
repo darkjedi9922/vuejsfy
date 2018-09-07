@@ -9,7 +9,6 @@ function File(path) {
     this.descriptor = fs.openSync(path, 'w');
 }
 
-// (content: string)
 File.prototype.write = function(content) {
     fs.writeFileSync(this.descriptor, content);
 }
