@@ -26,5 +26,13 @@
   },
   "devDependencies": {
     "mocha": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkjedi9922/vuejsfy.git"
+  },
+  "homepage": "https://github.com/darkjedi9922/vuejsfy#readme",
+  "bugs": {
+    "url": "https://github.com/darkjedi9922/vuejsfy/issues"
   }
 }
