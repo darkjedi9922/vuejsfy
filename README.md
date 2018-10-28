@@ -10,7 +10,7 @@ The module can be used **as an application** and **as a module**.
 
 ## Usage **as an application**
 
-`node vuejsfy '<vuefile>' [<flags>]`
+`vuejsfy '<vuefile>' [<flags>]`
 
 ### Base
 
@@ -54,7 +54,7 @@ export default {
 </style>
 ```
 
-After **`nodejs vuejsfy HelloVueJsfy.vue`** in the same directory where the .vue file is will be created **HelloVuejsfy.vue.js** and **HelloVuejsfy.vue.css** files:
+After **`vuejsfy HelloVueJsfy.vue`** in the same directory where the .vue file is will be created **HelloVuejsfy.vue.js** and **HelloVuejsfy.vue.css** files:
 
 ```js
 // HelloVueJsfy.vue.js

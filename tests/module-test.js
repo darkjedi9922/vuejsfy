@@ -1,6 +1,6 @@
 const fs = require('fs');
 const assert = require('assert');
-const vuejsfy = require('../vuejsfy');
+const vuejsfy = require('..');
 
 describe('module', function() {
 

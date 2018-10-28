@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Compiles .vue file to proper .js and .css file vue components",
   "main": "index.js",
-  "directories": {
-    "example": "example"
+  "bin": {
+    "vuejsfy": "./bin/vuejsfy.js"
   },
   "scripts": {
     "test": "mocha tests"
@@ -12,7 +12,9 @@
   "keywords": [
     "vue",
     "compile",
-    "component"
+    "component",
+    "js",
+    "css"
   ],
   "author": "Jed Dark",
   "license": "MIT",
