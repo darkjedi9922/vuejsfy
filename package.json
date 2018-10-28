@@ -1,7 +1,7 @@
 {
   "name": "vuejsfy",
   "version": "1.0.0",
-  "description": "Compiles .vue file to proper .js and .css files",
+  "description": "Compiles .vue file to proper .js and .css file vue components",
   "main": "index.js",
   "directories": {
     "example": "example"
@@ -17,7 +17,7 @@
   "author": "Jed Dark",
   "license": "MIT",
   "dependencies": {
-    "adequate-file-finder": "^0.1.2",
+    "adequate-file-finder": "^0.2.0",
     "jsdom": "^12.0.0",
     "minimist": "^1.2.0",
     "param-case": "^2.1.1"

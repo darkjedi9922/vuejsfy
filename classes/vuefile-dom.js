@@ -11,7 +11,10 @@ function VuefileDom(content) {
 VuefileDom.prototype.readScript = function() {
     var scripts = this.dom.window.document.getElementsByTagName('script');
     if (scripts.length !== 1) throw new Error('In the file is not only one <script> tag');
-    return scripts[0].textContent.replace('export', '').replace('default', '').trim();
+    var script = scripts[0].textContent;
+    var firstBrace = script.indexOf('{');
+    if (firstBrace == -1) return script.trim();
+    else return script.slice(firstBrace).trim();
 }
 
 VuefileDom.prototype.readTemplate = function() {

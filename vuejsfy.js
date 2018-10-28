@@ -8,13 +8,13 @@ const VuefilePath = require('./classes/vuefile-path');
 const VuefileCompiler = require('./classes/vuefile-compiler');
 
 /**
- * options.htmlformat: bool
- * options.dest - destJs + destCss
- * options.destJs - directory for compiled js file
- * options.destCss - directory for compiled css file
+ * options.htmlformat: bool | default: false
+ * options.dest => destJs + destCss | default: .vue file dir
+ * options.destJs => directory for compiled js file | default: dest
+ * options.destCss => directory for compiled css file | default: dest
  */
 function compile(filename, options) {
-    options = options || {}
+    options = options || { htmlformat: false }
 
     var vueContent = fs.readFileSync(filename);
     var vuefilePath = new VuefilePath(filename);

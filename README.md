@@ -18,13 +18,13 @@ The module can be used **as an application** and **as a module**.
 
 ### Flags
 
-* `--htmlformat` - Transform *ComponentName* style of the filename and the component name to *component-name*. Without this flags the style will be not applied.
+* `--htmlformat` - Transform *ComponentName* style of the filename and the component name to *component-name*. Without this flags the style will be not applied. By default it is false.
 
 * `--dest <dir>` - Destination directory of the compiled js and css files. By default there are created in the same directory where .vue file is.
 
-* `--destJs <dir>` - Destination directory of the compiled js file. By default equals *--dest* flag value.
+* `--destJs <dir>` - Destination directory of the compiled js file. By default it equals *--dest* flag value.
 
-* `--destCss <dir>` - Destination directory of the compiled css file. By default equals *--dest* flag value.
+* `--destCss <dir>` - Destination directory of the compiled css file. By default it equals *--dest* flag value.
 
 ## Example
 
