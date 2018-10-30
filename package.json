@@ -1,7 +1,7 @@
 {
   "name": "vuejsfy",
-  "version": "1.0.0",
-  "description": "Compiles .vue file to proper .js and .css file vue components",
+  "version": "1.0.1",
+  "description": "Compiles .vue file to proper .js and .css file vue components.",
   "main": "index.js",
   "bin": {
     "vuejsfy": "./bin/vuejsfy.js"
