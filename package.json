@@ -11,8 +11,11 @@
   },
   "keywords": [
     "vue",
+    "file"
     "compile",
+    "compiler",
     "component",
+    "components",
     "js",
     "css"
   ],
