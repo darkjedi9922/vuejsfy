@@ -77,6 +77,17 @@ Vue.component('HelloVueJsfy', {
 }
 ```
 
+### CSS preprocessors
+
+If the `<style>` tag has a `lang` attribute with some stylesheet preprocessor language then a style file will be created with corresponding extension.
+
+```html
+<!-- Example -->
+<style lang="scss"></style> <!-- => component.vue.scss -->
+```
+
+Default lang is **css**.
+
 ## Usage **as a module**
 
 Basically the usage is the same as the usage as an application but module is required and all of the flags get in as options.
@@ -95,3 +106,11 @@ vuejsfy('components/ExampleWithOptions.vue', {
     dest: 'scripts/components'
 });
 ```
+
+## Changelog
+
+### v1.1.0
+* **Add CSS preprocessor support**
+
+### v1.0.1
+* Some fixes

@@ -1,4 +1,6 @@
 export = VuefileCompiler;
+import VuefileDom from "./vuefile-dom"
+import Style from "./style";
 
 declare class VuefileCompiler {
     /**
@@ -28,7 +30,7 @@ declare class VuefileCompiler {
     public compileJs(): string;
 
     /**
-     * @returns The CSS content or null if that does not exist
+     * @returns The Style object or null if that does not exist
      */
-    public compileCss(): string|null;
+    public compileCss(): Style|null;
 }

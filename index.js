@@ -42,10 +42,10 @@ function compileJs(compiler, dir) {
 
 // (compiler: VuefileCompiler, dir: string)
 function compileStyle(compiler, dir) {
-    var css = compiler.compileCss();
-    if (!css) return;
-    var file = new File(dir + '/' + compiler.componentName + '.vue.css');
-    file.write(css);
+    var style = compiler.compileCss();
+    if (!style) return;
+    var file = new File(dir + '/' + compiler.componentName + '.vue.' + style.getFileExt());
+    file.write(style.getContent());
     file.close();
 }
 

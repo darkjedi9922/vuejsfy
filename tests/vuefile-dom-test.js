@@ -42,7 +42,7 @@ describe('VuefileDom class', function() {
     it('reads the style', function() {
         var style = '.class { color: red }';
         var dom = new VuefileDom('<style>' + style + '</style>');
-        assert.equal(dom.readStyle(), style);
+        assert.equal(dom.readStyle().getContent(), style);
     })
 
     it('returns null if there is no style', function () {

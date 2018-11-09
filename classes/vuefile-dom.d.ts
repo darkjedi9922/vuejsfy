@@ -1,4 +1,6 @@
 export = VuefileDom;
+import { JSDOM } from 'jsdom';
+import Style from './style';
 
 declare class VuefileDom {
     /**
@@ -27,5 +29,5 @@ declare class VuefileDom {
      * @returns The style part or null if that does not exists
      * @throws Error If in the file is more than one <style> tag
      */
-    public readStyle(): string|null;
+    public readStyle(): Style|null;
 }

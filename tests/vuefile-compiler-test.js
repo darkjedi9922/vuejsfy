@@ -15,7 +15,7 @@ describe('VuefileCompiler class', function() {
         var content = fs.readFileSync('tests/example/example.vue');
         var expected = fs.readFileSync('tests/example/example.css');
         var compiler = new VuefileCompiler('example', content);
-        assert.equal(compiler.compileCss(), expected);
+        assert.equal(compiler.compileCss().getContent(), expected);
     })
 
     it('returns null if there is no style', function () {

@@ -64,4 +64,17 @@ describe('module', function() {
         fs.rmdirSync(dest);
         fs.rmdirSync(destCss);
     })
+
+    it('compiles style with corresponding style lang', function () {
+        var outCss = 'tests/example/ScssComponent.vue.scss';
+        var idealCss = 'tests/example/ideals/ScssComponent.vue.scss';
+
+        vuejsfy('tests/example/ScssComponent.vue');
+
+        assert.ok(fs.existsSync(outCss));
+        assert.equal(fs.readFileSync(outCss).toString(), fs.readFileSync(idealCss).toString());
+
+        fs.unlinkSync('tests/example/ScssComponent.vue.js');
+        fs.unlinkSync(outCss);
+    })
 })

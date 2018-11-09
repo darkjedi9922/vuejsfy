@@ -1,6 +1,7 @@
 'use strict';
 
 var jsdom = require('jsdom');
+var Style = require('./style');
 
 var { JSDOM } = jsdom;
 
@@ -27,7 +28,7 @@ VuefileDom.prototype.readTemplate = function() {
 VuefileDom.prototype.readStyle = function() {
     var styles = this.dom.window.document.getElementsByTagName('style');
     if (styles.length > 1) throw new Error('In .vue file can not be more than one <style> tag');
-    else if (styles.length === 1) return styles[0].textContent.trim();
+    else if (styles.length === 1) return new Style(styles[0]);
     else return null;
 }
 
